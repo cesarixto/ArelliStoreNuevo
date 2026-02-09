@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arellistore Landing Page - Buscador Corregido</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FFB703",
+                        "accent": "#F06C24",
+                        "secondary": "#219EBC",
+                        "info": "#97E7F4",
+                        "dark-blue": "#042443",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221b10",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        }
+        .hero-gradient { background: linear-gradient(rgba(4, 36, 67, 0.4), rgba(4, 36, 67, 0.7)); }
+        .hotspot-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .wavy-badge {
+            clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
+        }.search-container input:placeholder-shown + button {
+            display: block;
+        }
+        .search-input {
+            width: 0;
+            padding: 0;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .search-container:focus-within .search-input {
+            width: 200px;
+            padding: 0.5rem 1rem;
+            opacity: 1;
+        }
+        .header-scrolled {
+            background-color: #042443;
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .shadow-glow {
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-dark-blue dark:text-white font-display overflow-x-hidden">
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent py-4" id="main-header">
+<div class="w-full px-6 lg:px-12">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">music_note</span>
+<h1 class="text-white text-2xl font-extrabold tracking-tight">Arellistore</h1>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-white hover:text-primary text-sm font-bold transition-colors tracking-wider" href="#">TIENDA</a>
+<a class="text-white hover:text-primary text-sm font-bold transition-colors tracking-wider" href="#">PÁGINAS</a>
+<a class="text-white hover:text-primary text-sm font-bold transition-colors tracking-wider" href="#">BLOG</a>
+<a class="text-white hover:text-primary text-sm font-bold transition-colors tracking-wider" href="#">LOGIN</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="search-container flex items-center bg-white/10 rounded-full focus-within:bg-white/20 transition-all duration-300">
+<input class="search-input bg-transparent border-none focus:ring-0 text-white text-sm placeholder:text-white/60" placeholder="Buscar..." type="text"/>
+<button class="p-2 text-white hover:text-primary transition-colors flex items-center justify-center cursor-pointer" onclick="this.previousElementSibling.focus()">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<button class="relative p-2 text-white hover:text-primary transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-accent text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-dark-blue">2</span>
+</button>
+<button class="lg:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 50) {
+            header.classList.add('bg-dark-blue', 'shadow-xl', 'py-2');
+            header.classList.remove('bg-transparent', 'py-4');
+        } else {
+            header.classList.remove('bg-dark-blue', 'shadow-xl', 'py-2');
+            header.classList.add('bg-transparent', 'py-4');
+        }
+    });
+</script>
+<section class="relative h-screen min-h-[700px] w-full flex items-center justify-center bg-cover bg-fixed bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBy6JUCq-9IFXhWPpYDBXjcrU6ZPVjqb-0uS__SyUyTFi2URNaFMlWWa-AgqOS32NsIiMmy4drwyTmwJiCfNn-zt0xzn7DXj_IclZ2udjMcx17sELWk9x7JI2Pf2mzfVDfBUfxSZdvnYPJv6gqr7thGpIDirLC1OjE2eHnOP86RonldYnBobFxAJDsITNCZhRJ7tC9_YoOeSHY6tGpT9bODAr8ofs5PdA9KrUWCJGofAiEIvShzshuTpIDkMmbmfVjWI-qb9TBHI0U1');">
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative z-10 text-center px-4 max-w-5xl">
+<span class="text-primary font-bold tracking-[0.3em] uppercase mb-6 block animate-fade-in">Nueva Temporada 2026</span>
+<h1 class="text-white text-6xl md:text-8xl font-black leading-tight mb-8">Arellistore Fashion</h1>
+<p class="text-info text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light">Siente el ritmo de la moda con nuestra colección exclusiva inspirada en leyendas musicales.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-primary hover:bg-primary/90 text-dark-blue px-12 py-5 rounded-lg font-black text-lg transition-all hover:scale-105 shadow-lg">EXPLORAR</button>
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-12 py-5 rounded-lg font-black text-lg transition-all hover:scale-105">VER VIDEO</button>
+</div>
+</div>
+</section>
+<section class="flex flex-col md:flex-row w-full h-auto min-h-[600px]">
+<div class="w-full md:w-1/2 bg-cover bg-center h-[500px] md:h-auto" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrWtfW2Nsyz4ANA_4t8rKQd7aCIu7fsxSMGYuxn9x7ZyxVBwiYpPKtsonK9LG_SyGAbk3fZKMzg2uVGEFtFQ09WJ1MkNTSoSdycnmAzaI7HVT_h0uATrgI5yItSu4bEJkHQ1y0JSrqOZdfyCxLObuqj4c-JAf73Ppy17mla8c09QiERTDBrOY-8i98LtDdixU9oTKYhwKgjQFaB-qV4xJ6gb83bd8B7WulzxrkZlQMbT-R8PLUlVSvelWh4pGISDxGvHSkSByLboqb');">
+</div>
+<div class="w-full md:w-1/2 bg-dark-blue flex flex-col justify-center items-start p-12 md:p-24 text-white">
+<h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">CREA INCREÍBLES EFECTOS PARALLAX</h2>
+<p class="text-info/80 text-xl mb-10 leading-relaxed max-w-xl">Eleva tu diseño con profundidad y movimiento. Nuestra nueva colección presenta texturas que reaccionan a tu presencia.</p>
+<button class="bg-accent hover:bg-accent/90 text-white px-10 py-5 rounded-lg font-black transition-all shadow-xl shadow-accent/20 hover:-translate-y-1">SABER MÁS</button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 w-full">
+<div class="relative h-[650px] overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDq62jzWWb7qYB9LoL--EpNZVmS0NGP7Eb2bBQ5QLXVlggVOkRsF9vTLf3_TEChnO6fB7ue_MLfIM0kT_8jTkpQqpMkeDiYSibmQEhvadHq_Df8XAjBHpkxBt0947kSfUnv4O3RlYYqhkvjK0BMAMOnF3DLzhmWe-l4Fd3h9m7BJuLdU6b8uYgVrMyxDMLc3c8r1zlkofN3SE6987Tx93mtbZlvx8JZRtaDUcZjORCLvmGTZyt3LA_zc5WxnJPg9rxXEOL9CIfQSYyG');"></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute top-1/3 left-1/2 hotspot-pulse w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer shadow-2xl z-20">
+<span class="material-symbols-outlined text-dark-blue text-xl font-bold">add</span>
+</div>
+<div class="absolute bottom-16 left-16 z-10">
+<div class="bg-primary text-dark-blue font-black px-6 py-2 inline-block mb-4 wavy-badge shadow-glow transform -rotate-2">OFERTA</div>
+<h3 class="text-white text-4xl font-black mb-6">NUEVA COLECCIÓN</h3>
+<button class="bg-accent text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-dark-blue transition-all">COMPRAR AHORA</button>
+</div>
+</div>
+<div class="relative h-[650px] overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLcsJTHXptbthat25quHsgc5OGJKJCI20HP1pA99gbiYXqa0S5828p6XVFBG_GlmQa23H2nnfgBKKTmCJAmrdM0GkYZE-hR4oCG64bgMskSz7DNtv9cyCDW16eMGL8bXzoO9fUvLHQ87uuQF3st3f4fG_syjH_gkqTjsMq7gFpbmgGsOQm6yvMRwsiju0d2ZavyeTtbbF5i4WC-UWJgh66gxIOr2bKtrhMI4lv896mzfW4WdudBKWfH6FBSFVAokh5r2HURTSBRdiL');"></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-1/3 right-1/3 hotspot-pulse w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer shadow-2xl z-20">
+<span class="material-symbols-outlined text-dark-blue text-xl font-bold">add</span>
+</div>
+<div class="absolute bottom-16 left-16 z-10">
+<div class="bg-primary text-dark-blue font-black px-6 py-2 inline-block mb-4 wavy-badge shadow-glow transform rotate-2">OFERTA EXCLUSIVA</div>
+<h3 class="text-white text-4xl font-black mb-6">EDICIÓN LIMITADA</h3>
+<button class="bg-accent text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-dark-blue transition-all">VER TIENDA</button>
+</div>
+</div>
+</section>
+<section class="bg-info/20 dark:bg-dark-blue/80 py-24 px-6">
+<div class="max-w-4xl mx-auto text-center">
+<span class="material-symbols-outlined text-accent text-6xl mb-6">mail</span>
+<h2 class="text-4xl md:text-5xl font-black mb-6 text-dark-blue dark:text-white uppercase tracking-tighter">Únete a la Revolución</h2>
+<p class="text-dark-blue/70 dark:text-info/70 mb-12 text-xl max-w-2xl mx-auto">Suscríbete para recibir actualizaciones exclusivas, acceso anticipado y ofertas especiales directamente en tu bandeja de entrada.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto" onsubmit="return false;">
+<input class="flex-1 px-8 py-5 rounded-lg bg-white dark:bg-white/10 border-none focus:ring-4 focus:ring-primary/30 text-dark-blue dark:text-white text-lg" placeholder="Tu correo electrónico" type="email"/>
+<button class="bg-dark-blue dark:bg-primary text-white dark:text-dark-blue px-12 py-5 rounded-lg font-black text-lg hover:scale-105 transition-transform shadow-lg">SUSCRIBIRSE</button>
+</form>
+</div>
+</section>
+<section class="py-24 bg-white dark:bg-background-dark relative overflow-hidden">
+<div class="px-6 lg:px-12 mb-14 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h2 class="text-4xl font-black tracking-tighter">PRODUCTOS DESTACADOS</h2>
+<div class="h-2 w-24 bg-primary mt-4"></div>
+</div>
+<div class="flex gap-4">
+<button class="w-14 h-14 rounded-full border-2 border-dark-blue/10 flex items-center justify-center hover:bg-dark-blue hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-14 h-14 rounded-full border-2 border-dark-blue/10 flex items-center justify-center hover:bg-dark-blue hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex overflow-x-auto gap-8 px-6 lg:px-12 pb-12 scrollbar-hide no-scrollbar snap-x">
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHVvAsy9k8ThYcpxUAF1AqWChuosrYJWQXZ0wdf01GZ6-R6_Cy8x9cnhBi4qq12JVDFkfZ0huL8cTZ86H6FqksuQONfeqeI7YSJFcbE37Q6eM4S1cMqUVtJrH9vPVOkyXtl0AJ2hGJtuprU4thFVcWvudiXljj3nGimEn__lFVlE6Kvay4GyCLo6ZBHTchSu7biUPZTecx0ruKg_NcKMXqenYittTju1oO2iXJ4NQ7Q7ZNv96om_v4IyHBqeaNMXf7e-dE8BJDfrao"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<p class="font-black text-xl mb-1">Retro Summer</p>
+<p class="text-primary font-bold">$89.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuYhXLn9sOVMylnZZRA4JU5u2AcyIdpx69-BcGcAKiR53XLue7flE3mIMgePmUpAOvUgjMsl2GD-04VXb9pexg_ZGkkvpYdwBOsylJGKZ6vChJS89Qx5UYG99t7p-L2iR_kl7b9TOFGLDZILiS--tYO76Y9e91IeF3kkJonA_TOmw2d01nOFovO2JAlIoMT_6D__AKjApjWOq3npmZKGfN0X9sSEfuoenyZrKqGw0E9wZY5eAu8IUtw7o9r7SsL4gUSP34J3toqidP"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Urban Flow</p>
+<p class="text-primary font-bold">$120.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlvnynN7j8T0GiuLUvVf0u0yRL-MqClxtFYxWJgHSP8ZPlwm0ficBysu-zVjJ_KLtxqh4CcTpIbnPyKKv5eDxIvOpKhmlbvINDg1Ot_R4MFAW1g2MpN_NcgHdEkAH4RLcIpaZ81c09_NG4GNBA10rzssIiiG_BcJxwvFKF7Zj9-NnAox5y15M6Io3vn_4V1Dy74fQvRtohBtANecSrUFXmwN6CEptF-kBsJMoB3em7A7ZtBh4gfCxFntr4MBq_YAzPw6gzZJXQMx0W"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Elegance Kit</p>
+<p class="text-primary font-bold">$45.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbgh5TWqp-U7kLvi0ZBpscJjwWA-PZG7DGjB7kn69z6fJ8MaICmjkmizTza3k7hoyCMaKRCRliuiJ7NyDJ_llolbZsNT7BbPSgZo5D4btvLRasXcPCR036A_Kk7Hvg938lqFBiIqLaPnIg9GnXuZdn0JKqIB0ZCXPZsTH_92swuV2wGYEokhBbnXVc2AyfGRH_Q-zJADbet4135lxyeh7wl7wdp4CN9YIU4bIRZaJ4oEoDqvLVZS6L_gwv4fusYZp8wn6YD6iODAZU"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Night Out</p>
+<p class="text-primary font-bold">$150.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZkisv1aJhLXVm1HRQa5PXAXp8HpNchMFyVS0ySq5PYyXCwDyc-x7YkzHgTGw7hivcxXb7YvEVgMK7a7uNXG5LV4AwwThrnTwsS6Zs0A837qH07D5zhOdUdAKBFLx_QLDDjfBMjp-e3sKzzbrcgU3DT5X-i8Q9XI9hDUjZ2XlDAJxvz712Blk_QjNHjmNiZr6uNCSxybqid2NMTso4IGP3dXpgwHndFjLgQmw625meq-HW5hJJIQH5K5Hq8nw25e3M7a2qy2dunuWv"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Casual Day</p>
+<p class="text-primary font-bold">$65.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApFCIUaDRQ0E86iFQZT7hJK0UejySB0GRY3DbjZ5LD4jVdfpTAFgUTikIH7EjFA5RCMR-3Nw07vRA1cpBaEsS4HKrmJZ3NaIHmPA-uoA7kRO_5mTUNeXSq8iCgh2oicP3tsuHntzietPq3NbNNqcvRxxCrbsXooqsN1s1CpEGPRqZwJrLZUooscO-zHN1Xub4T0zf21Qu_-jTje0GNtL8tonAXKZit25uvbx9B1Uz0sWR0f82QZfLf6bFUJc9NpnExmy6bTAUX6_l6"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Neon Vibes</p>
+<p class="text-primary font-bold">$95.00</p>
+</div>
+</div>
+<div class="min-w-[320px] aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden relative group snap-start shadow-xl">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAHo9RaS7tYVY9ZFmARUXvqp0fUctCRxkDAczWXBoojPdsswQRbCwLHSHnOEucuoSq2R1_VZg-XKT-DEQ9qlIi32fNu71oVmy-8KY15gs9FCVlwCy4nu0JQW3IQ1QmNOq5kIAIlDKrK95vQb6bT3juoUAaJ96il09JPn-2MMOzLvR8cwDJkx6zSzcwJxlJQ5t9Mnoj5BeHpOSze6aCiCdqGIGbvzxsvtqtswXI6HrVpn-NHYTuahMkF1ShfAcf1udq9pkoJqZYpiPQ"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
+<p class="font-black text-xl mb-1">Step Up</p>
+<p class="text-primary font-bold">$210.00</p>
+</div>
+</div>
+</div>
+</section>
+<div class="bg-primary py-6 overflow-hidden border-y border-dark-blue/10">
+<div class="animate-marquee">
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">local_shipping</span> ENVÍO GRATIS A TODO EL MUNDO
+        </div>
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">verified</span> GARANTÍA DE CALIDAD 2 AÑOS
+        </div>
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">payments</span> PAGO 100% SEGURO
+        </div>
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">sync</span> DEVOLUCIONES GRATUITAS 30 DÍAS
+        </div>
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">local_shipping</span> ENVÍO GRATIS A TODO EL MUNDO
+        </div>
+<div class="flex items-center gap-4 text-dark-blue font-black uppercase tracking-widest text-base px-8">
+<span class="material-symbols-outlined text-3xl">verified</span> GARANTÍA DE CALIDAD 2 AÑOS
+        </div>
+</div>
+</div>
+<footer class="bg-dark-blue text-white py-24 px-6 lg:px-12">
+<div class="w-full mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+<div>
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-4xl">music_note</span>
+<h2 class="text-3xl font-black tracking-tight">Arellistore</h2>
+</div>
+<p class="text-info/70 text-lg leading-relaxed mb-8">
+                    Inspirados por la música, creados para tu estilo. Redefiniendo la moda contemporánea con una visión audaz desde 2020.
+                </p>
+<div class="flex gap-4">
+<a class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary hover:text-dark-blue transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary hover:text-dark-blue transition-all" href="#">
+<span class="material-symbols-outlined">photo_camera</span>
+</a>
+<a class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary hover:text-dark-blue transition-all" href="#">
+<span class="material-symbols-outlined">video_library</span>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-black mb-8 text-primary uppercase tracking-widest">TIENDA</h3>
+<ul class="space-y-5 text-lg text-info/60">
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Colección Mujer</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Colección Hombre</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Accesorios</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Ediciones Especiales</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Outlet</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-black mb-8 text-primary uppercase tracking-widest">AYUDA</h3>
+<ul class="space-y-5 text-lg text-info/60">
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Seguimiento de Pedido</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Política de Envíos</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Guía de Tallas</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Centro de Ayuda</a></li>
+<li><a class="hover:text-white hover:translate-x-2 inline-block transition-all" href="#">Contacto Directo</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-black mb-8 text-primary uppercase tracking-widest">CONTACTO</h3>
+<ul class="space-y-6 text-lg text-info/60">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+<span>Calle de la Moda 123, Distrito Central<br/>Madrid, España</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">call</span>
+<span>+34 912 345 678</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">mail</span>
+<span>hello@arellistore.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-info/40 text-sm">© 2026 Arellistore. Todos los derechos reservados. Diseñado para el futuro de la moda.</p>
+<div class="flex gap-8 text-sm text-info/40">
+<a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos de Servicio</a>
+<a class="hover:text-white transition-colors" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
